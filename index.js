@@ -1,11 +1,14 @@
 const express = require('express');
 
-const Hubs = require('./hubs/hubs-model.js');
+const hubsRouter = require('./hubs/hubs-router');
+
+// const Hubs = require('./hubs/hubs-model.js');
 
 const server = express();
 
 server.use(express.json());
 
+/*
 server.get('/', (req, res) => {
   res.send(`
     <h2>Lambda Hubs API</h>
@@ -95,6 +98,18 @@ server.put('/api/hubs/:id', (req, res) => {
     });
   });
 });
+*/
+
+// Users Endpoint
+server.get('/api/hubs/:id/messages', (req, res) => {
+  const hubId = req.params.id;
+  const message = { ...req.body, hubId }
+
+  // save the message
+
+});
+
+server.use('/api/hubs', hubsRouter);
 
 // add an endpoint that returns all the messages for a hub
 // add an endpoint for adding new message to a hub
